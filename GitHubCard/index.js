@@ -58,9 +58,10 @@ const followersArray = [];
 */
 
 function userCard(info) {
+// defines new elements 
   const
-  newCard = document.createElement('div'),
-  newImage = document.createElement('img'),
+  card = document.createElement('div'),
+  cardImage = document.createElement('img'),
   cardInfo = document.createElement('div'),
   cardTitle = document.createElement('h3'),
   cardUsername = document.createElement('p'),
@@ -71,6 +72,19 @@ function userCard(info) {
   userFollowing = document.createElement('p'),
   userBio = document.createElement('p');
 
+// append each element where it belongs
+  card.appendChild(cardImage);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(cardTitle);
+  cardInfo.appendChild(cardUsername);
+  cardInfo.appendChild(userLocation);
+  cardInfo.appendChild(userProfileLink);
+  userProfileLink.appendChild(userProfileUrl);
+  cardInfo.appendChild(userFollowers);
+  cardInfo.appendChild(userFollowing);
+  cardInfo.appendChild(userBio);
+
+  // set class names
   newImage.src = info.avatar_url;
   cardInfo.textContent = info.
 
