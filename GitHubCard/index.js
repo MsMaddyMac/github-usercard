@@ -5,14 +5,13 @@
 
 axios.get('https://api.github.com/users/MsMaddyMac')
   .then(response => {
-    console.log(response);
-    response.data.forEach(item => {
-      
+    userCard(response);
     })
-  })
+  
   .catch(error => {
     console.log("No information found.", error);
   });
+
 
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -36,7 +35,7 @@ axios.get('https://api.github.com/users/MsMaddyMac')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+// const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -91,17 +90,25 @@ function userCard(info) {
   cardUsername.classList.add('username');
 
   // set element context
-  cardImage.src = info.avatar_url;
-  cardTitle.textContent = info.name;
-  cardUsername.textContent = info.login;
-  userLocation.textContent = info.location;
+  cardImage.src = info.data.avatar_url;
+  cardTitle.textContent = info.data.name;
+  cardUsername.textContent = info.data.login;
+  userLocation.textContent = info.data.location;
   userProfileLink.textContent = 'Profile:';
-  userProfileUrl.href = info.url;
-  userFollowers.textContent = info.followers;
-  userFollowing.textContent = info.following;
-  userBio.textContent = info.bio;
+  userProfileUrl.href = info.data.html_url;
+  userProfileUrl.textContent = info.data.html_url;
+  userFollowers.textContent = `Followers: ${info.data.followers}`;
+  userFollowing.textContent = `Following: ${info.data.following}`;
+  userBio.textContent = info.data.bio;
 
-}
+return document.querySelector('.cards').appendChild(card);
+};
+
+
+
+
+
+
 
 /* List of LS Instructors Github username's: 
   tetondan
