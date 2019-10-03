@@ -85,8 +85,21 @@ function userCard(info) {
   cardInfo.appendChild(userBio);
 
   // set class names
-  newImage.src = info.avatar_url;
-  cardInfo.textContent = info.
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
+  cardTitle.classList.add('name');
+  cardUsername.classList.add('username');
+
+  // set element context
+  cardImage.src = info.avatar_url;
+  cardTitle.textContent = info.name;
+  cardUsername.textContent = info.login;
+  userLocation.textContent = info.location;
+  userProfileLink.textContent = 'Profile:';
+  userProfileUrl.href = info.url;
+  userFollowers.textContent = info.followers;
+  userFollowing.textContent = info.following;
+  userBio.textContent = info.bio;
 
 }
 
