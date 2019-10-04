@@ -35,7 +35,7 @@ axios.get('https://api.github.com/users/MsMaddyMac')
           user, and adding that card to the DOM.
 */
 
-// const followersArray = [];
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -71,18 +71,6 @@ function userCard(info) {
   userFollowing = document.createElement('p'),
   userBio = document.createElement('p');
 
-// append each element where it belongs
-  card.appendChild(cardImage);
-  card.appendChild(cardInfo);
-  cardInfo.appendChild(cardTitle);
-  cardInfo.appendChild(cardUsername);
-  cardInfo.appendChild(userLocation);
-  cardInfo.appendChild(userProfileLink);
-  userProfileLink.appendChild(userProfileUrl);
-  cardInfo.appendChild(userFollowers);
-  cardInfo.appendChild(userFollowing);
-  cardInfo.appendChild(userBio);
-
   // set class names
   card.classList.add('card');
   cardInfo.classList.add('card-info');
@@ -96,13 +84,46 @@ function userCard(info) {
   userLocation.textContent = info.data.location;
   userProfileLink.textContent = 'Profile:';
   userProfileUrl.href = info.data.html_url;
-  userProfileUrl.textContent = info.data.html_url;
+  userProfileUrl.textContent = `${info.data.html_url}`;
   userFollowers.textContent = `Followers: ${info.data.followers}`;
   userFollowing.textContent = `Following: ${info.data.following}`;
   userBio.textContent = info.data.bio;
 
+// append each element where it belongs
+  card.appendChild(cardImage);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(cardTitle);
+  cardInfo.appendChild(cardUsername);
+  cardInfo.appendChild(userLocation);
+  cardInfo.appendChild(userProfileLink);
+  userProfileLink.appendChild(userProfileUrl);
+  cardInfo.appendChild(userFollowers);
+  cardInfo.appendChild(userFollowing);
+  cardInfo.appendChild(userBio);
+
 return document.querySelector('.cards').appendChild(card);
 };
+
+const followersArray = [
+  'BlueImport',
+  'zac-higgins',
+  'J2Macwilliams',
+  'TinySquid',
+  'ndacode',
+  'EricFerguson76',
+  'Lfritze',
+  'VivaCode'
+];
+
+followersArray.forEach((user) => {
+  axios.get(`https://api.github.com/users/${user}`)
+  .then(res => {
+    userCard(res);
+  })
+  .catch(error => {
+    console.log('Not a GitHub user', error);
+  });
+});
 
 
 
